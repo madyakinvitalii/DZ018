@@ -9,7 +9,9 @@ class MovieDAO:
         return self.session.query(Movie).get(mid)
 
     def get_all(self):
-        print(self.session.query(Movie))
+        print(3)
+        print('movie', Movie)
+        print('session', self.session)
         return self.session.query(Movie)
 
     def create(self, data):

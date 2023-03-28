@@ -6,8 +6,8 @@ from dao.model.movie import MovieSchema
 
 movie_ns = Namespace('movies')
 
-Movie_schema = MovieSchema()
-Movies_schema = MovieSchema(many=True)
+movie_schema = MovieSchema()
+movies_schema = MovieSchema(many=True)
 
 
 @movie_ns.route('/')
@@ -15,7 +15,8 @@ class MoviesView(Resource):
     def get(self):
         print('1')
         all_movies = movie_service.get_all()
-        return Movies_schema.dumps(all_movies), 200
+        print('allMovies', all_movies)
+        return movies_schema.dumps(all_movies), 200
 
     def post(self):
         req_json = request.json
@@ -27,7 +28,7 @@ class MoviesView(Resource):
 class MovieView(Resource):
     def get(self, mid: int):
         movie = movie_service.get_one(mid)
-        return Movie_schema.dump(movie), 200
+        return movie_schema.dump(movie), 200
 
     def put(self, mid):
         req_json = request.json
