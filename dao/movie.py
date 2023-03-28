@@ -12,7 +12,7 @@ class MovieDAO:
         print(3)
         print('movie', Movie)
         print('session', self.session)
-        return self.session.query(Movie)
+        return self.session.query(Movie).all()
 
     def create(self, data):
         movie = Movie(**data)
