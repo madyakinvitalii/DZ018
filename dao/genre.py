@@ -3,7 +3,7 @@ from dao.model.genre import Genre
 
 class GenreDAO:
     def __init__(self, session):
-        self.session = session
+        self.session = session.session
 
     def get_one(self, gid):
         return self.session.query(Genre).get(gid)

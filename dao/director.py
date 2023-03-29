@@ -3,7 +3,7 @@ from dao.model.director import Director
 
 class DirectorDAO:
     def __init__(self, session):
-        self.session = session
+        self.session = session.session
 
     def get_one(self, did):
         return self.session.query(Director).get(did)

@@ -12,7 +12,7 @@ directors_schema = DirectorSchema(many=True)
 @director_ns.route('/')
 class DirectorsView(Resource):
     def get(self):
-        all_directors = director_service.get.all()
+        all_directors = director_service.get_all()
         return directors_schema.dump(all_directors), 200
 
 

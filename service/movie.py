@@ -9,8 +9,16 @@ class MovieService:
         return self.dao.get_one(mid)
 
     def get_all(self):
-        print(2)
         return self.dao.get_all()
+
+    def get_all_by_director(self, did):
+        return self.dao.get_all_by_director(did)
+
+    def get_all_by_genre(self, gid):
+        return self.dao.get_all_by_genre(gid)
+
+    def get_all_by_year(self, year):
+        return self.dao.get_all_by_year(year)
 
     def create(self, data):
         return self.dao.create(data)

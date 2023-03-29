@@ -13,10 +13,21 @@ movies_schema = MovieSchema(many=True)
 @movie_ns.route('/')
 class MoviesView(Resource):
     def get(self):
-        print('1')
-        all_movies = movie_service.get_all()
-        print('allMovies', all_movies)
-        return movies_schema.dumps(all_movies), 200
+        director_id = request.args.get('director_id')
+        genre_id = request.args.get('genre_id')
+        year = request.args.get('year')
+        if director_id:
+            movies_by_director = movie_service.get_all_by_director(director_id)
+            return movies_schema.dumps(movies_by_director), 200
+        elif genre_id:
+            movies_by_genre = movie_service.get_all_by_genre(genre_id)
+            return movies_schema.dumps(movies_by_genre), 200
+        elif year:
+            movies_by_year = movie_service.get_all_by_year(year)
+            return movies_schema.dumps(movies_by_year), 200
+        else:
+            all_movies = movie_service.get_all()
+            return movies_schema.dumps(all_movies), 200
 
     def post(self):
         req_json = request.json
